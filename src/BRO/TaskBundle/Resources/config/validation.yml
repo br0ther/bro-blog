@@ -1,0 +1,5 @@
+task:
+    - NotBlank: ~
+dueDate:
+    - NotBlank: ~
+    - Type: \DateTime

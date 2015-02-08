@@ -1,0 +1,27 @@
+bro_store_homepage:
+    path:     /product
+    defaults: { _controller: BROStoreBundle:Default:index }
+
+bro_create_product:
+    path:     /product/create
+    defaults: { _controller: BROStoreBundle:Default:create }
+    
+bro_get_product:
+    path:     /product/get/{id}
+    defaults: { _controller: BROStoreBundle:Default:get } 
+    
+bro_upd_product:
+    path:     /product/update/{id}/{name}
+    defaults: { _controller: BROStoreBundle:Default:update }    
+    
+bro_rm_product:
+    path:     /product/delete/{id}
+    defaults: { _controller: BROStoreBundle:Default:delete }  
+    
+bro_get_join_product:
+    path:     /product/get_join/{id}
+    defaults: { _controller: BROStoreBundle:Default:get_join }   
+    
+bro_book:
+    resource: "@BROStoreBundle/Controller/BookController.php"
+    type:     annotation     

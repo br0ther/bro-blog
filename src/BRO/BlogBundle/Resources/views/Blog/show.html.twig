@@ -1,0 +1,33 @@
+{% extends 'BROBlogBundle::layout.html.twig' %}
+
+{% block title %}{{ blog.title }}{% endblock %}
+
+{% block body %}
+    {% for flashMessage in app.session.flashbag.get('blogger-notice') %}
+        <div class="blogger-notice">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+    <article class="blog">
+        <header>
+            <div class="date"><time datetime="{{ blog.created|date('c') }}">{{ blog.created|date('l, F j, Y') }}</time></div>
+            <h2>{{ blog.title }}</h2>
+        </header>
+        <img src="{{ asset(['uploads/blogs/', blog.image]|join) }}" alt="{{ blog.title }} image not found" class="large" />
+        <div>
+            <p>{{ blog.blog }}</p>
+        </div>
+    </article>
+    <section class="comments" id="comments">
+        <section class="previous-comments">
+            <h3>Comments</h3>
+            {#% include 'BROBlogBundle:Comment:index.html.twig' with { 'comments': comments } %#}
+            {{ include ('BROBlogBundle:Comment:index.html.twig', { 'comments': comments }) }}
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                <h3>Add Comment</h3>
+                {#{ render 'BROBlogBundle:Comment:new' with { 'blog_id': blog.id } }#}
+                {{ render(controller('BROBlogBundle:Comment:new', {'blog_id': blog.id})) }}
+            {% endif %}
+        </section>
+    </section>
+{% endblock %}

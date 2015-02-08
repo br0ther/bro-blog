@@ -1,0 +1,30 @@
+{% extends 'BROBlogBundle::layout.html.twig' %}
+
+{% block title %}New Post{% endblock%}
+
+{% block body %}
+    <header>
+        <h1>Creation of new blog</h1>
+    </header>
+
+    {% for flashMessage in app.session.flashbag.get('blogger-notice') %}
+        <div class="blogger-notice">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+
+    <form action="{{ path('BloggerBlogBundle_blog_create') }}" method="post" {{ form_enctype(form) }} class="blogger">
+        {#{ form_widget(form) }#}
+        {{ form_errors(form) }}
+
+        {{ form_row(form.title) }}
+        {{ form_row(form.author) }}
+        {{ form_row(form.blog) }}
+        {{ form_row(form.tags) }}
+        {{ form_row(form.file) }}
+        {{ form_rest(form) }}
+        <p>
+            <input type="submit" value="Submit">
+        </p>
+    </form>
+{% endblock %}

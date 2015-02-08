@@ -1,0 +1,21 @@
+{{ form_start(form) }}
+    {{ form_errors(form) }}
+<div>
+        {{ form_label(form.task, 'Task Description') }}
+        {{ form_errors(form.task) }}
+        {{ form_widget(form.task) }}
+</div>
+<div>
+        {{ form_label(form.dueDate) }}
+        {{ form_errors(form.dueDate) }}
+        {{ form_widget(form.dueDate) }}
+</div>
+
+<h3>Category</h3>
+<div class="category">
+    {{ form_row(form.category.name) }}
+</div>
+<div>
+        {{ form_widget(form.save) }}
+</div>
+{{ form_end(form) }}

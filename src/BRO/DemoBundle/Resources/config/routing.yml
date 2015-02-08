@@ -1,0 +1,8 @@
+bro_demo_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: BRODemoBundle:Default:index }
+
+# src/BRO/DemoBundle/Resources/config/routing.yml
+random:
+    path:     /random/{limit}/{header}
+    defaults: { _controller: BRODemoBundle:Random:index }

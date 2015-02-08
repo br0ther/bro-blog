@@ -1,0 +1,54 @@
+{% extends 'BROBlogBundle::layout.html.twig' %}
+
+{% block body %}
+    {% for blog in blogs %}
+        <article class="blog">
+            <div class="date"><time datetime="{{ blog.created|date('c') }}">{{ blog.created|date('l, F j, Y') }}</time></div>
+            <header>
+                <h2><a href="{{ path('BloggerBlogBundle_blog_show', { 'id': blog.id, 'slug': blog.slug }) }}">{{ blog.title }}</a></h2>
+            </header>
+
+            <img src="{{ asset(['uploads/blogs/', blog.image]|join) }}" />
+            <div class="snippet">
+                <p>{{ blog.blog(500) }}</p>
+                <p class="continue"><a href="{{ path('BloggerBlogBundle_blog_show', { 'id': blog.id, 'slug': blog.slug }) }}">Continue reading...</a></p>
+            </div>
+
+            <footer class="meta">
+                <p>Comments: <a href="{{ path('BloggerBlogBundle_blog_show', { 'id': blog.id, 'slug': blog.slug }) }}#comments">{{ blog.comments|length }}</a></p>
+                <p>Posted by <span class="highlight">{{blog.author}}</span> at {{ blog.created|date('h:iA') }}</p>
+                <p>Tags: <span class="highlight">{{ blog.tags }}</span></p>
+            </footer>
+        </article>
+
+    {% else %}
+        <p>There are no blog entries for symblog</p>
+    {% endfor %}
+    {% if last_page > 1 %}
+        <div class="pagination">
+            <a href="{{ path('BloggerBlogBundle_homepage', {'page': 1 }) }}">
+                <img src="{{ asset('bundles/broblog/images/first.png') }}" alt="First page" title="First page" />
+            </a>
+
+            <a href="{{ path('BloggerBlogBundle_homepage', {'page': previous_page }) }}">
+                <img src="{{ asset('bundles/broblog/images/previous.png') }}" alt="Previous page" title="Previous page" />
+            </a>
+
+            {% for page in 1..last_page %}
+                {% if page == current_page %}
+                    {{ page }}
+                {% else %}
+                    <a href="{{ path('BloggerBlogBundle_homepage', {'page': page }) }}">{{ page }}</a>
+                {% endif %}
+            {% endfor %}
+
+            <a href="{{ path('BloggerBlogBundle_homepage', {'page': next_page }) }}">
+                <img src="{{ asset('bundles/broblog/images/next.png') }}" alt="Next page" title="Next page" />
+            </a>
+
+            <a href="{{ path('BloggerBlogBundle_homepage', {'page': last_page }) }}">
+                <img src="{{ asset('bundles/broblog/images/last.png') }}" alt="Last page" title="Last page" />
+            </a>
+        </div>
+    {% endif %} 
+{% endblock %}

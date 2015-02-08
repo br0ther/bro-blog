@@ -1,0 +1,16 @@
+<?xml version='1.0'?>
+
+<items>
+    <item>
+        <title>First Blood</title>
+        <email>john.doe@example.com</email>
+    </item>
+    <item>
+        <title>Rambo: First Blood Part II</title>
+        <email>doe.john@example.com</email>
+    </item>
+    <item>
+        <title>BRO film</title>
+        <email>bro@example.com</email>
+    </item>
+</items>

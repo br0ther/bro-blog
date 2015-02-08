@@ -1,0 +1,7 @@
+parameters:
+#    bro_task.example.class: BRO\TaskBundle\Example
+
+services:
+#    bro_task.example:
+#        class: %bro_task.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

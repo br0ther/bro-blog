@@ -1,0 +1,47 @@
+#bro_blog_homepage:
+#    path:     /hello/{name}
+#    defaults: { _controller: BROBlogBundle:Default:index }
+
+BloggerBlogBundle_homepage:
+    pattern:  /{page}
+    defaults: { _controller: BROBlogBundle:Page:index, page: 1  }
+    requirements:
+        _method:  GET
+        page: \d+
+
+BloggerBlogBundle_about:
+    pattern:  /about
+    defaults: { _controller: BROBlogBundle:Page:about }
+    requirements:
+        _method:  GET
+        
+BloggerBlogBundle_contact:
+    pattern:  /contact
+    defaults: { _controller: BROBlogBundle:Page:contact }
+    requirements:
+        _method:  GET|POST       
+
+BloggerBlogBundle_blog_show:
+    pattern:  /{id}/{slug}
+    defaults: { _controller: BROBlogBundle:Blog:show}
+    requirements:
+        _method:  GET
+        id: \d+        
+        
+BloggerBlogBundle_comment_create:
+    pattern:  /comment/{blog_id}
+    defaults: { _controller: BROBlogBundle:Comment:create }
+    requirements:
+        _method:  POST
+        blog_id: \d+    
+        
+BloggerBlogBundle_blog_create:
+    pattern:  /new
+    defaults: { _controller: BROBlogBundle:Blog:new}
+
+BloggerBlogBundle_blog_edit:
+    pattern:  /edit/{blog_id}
+    defaults: { _controller: BROBlogBundle:Blog:edit}
+    requirements:
+        _method:  POST
+        blog_id: \d+          

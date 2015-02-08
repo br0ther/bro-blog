@@ -1,0 +1,5 @@
+parameters:
+    # Blogger contact email address
+    bro_blog.emails.contact_email: contact@email.com
+    blogger_blog.comments.latest_comment_limit: 10
+    bro_blog.max_blogs_on_page: 10

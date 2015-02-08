@@ -1,0 +1,7 @@
+parameters:
+#    bro_store.example.class: BRO\StoreBundle\Example
+
+services:
+#    bro_store.example:
+#        class: %bro_store.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

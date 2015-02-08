@@ -1,0 +1,19 @@
+bro_new_task:
+    path:     /task/new
+    defaults: { _controller: BROTaskBundle:Default:new }
+    
+bro_task_homepage:
+    path:     /task/{name}
+    defaults: { _controller: BROTaskBundle:Default:index, name:'BRO' }
+    
+bro_task_secured:
+    resource: "@BROTaskBundle/Controller/SecuredController.php"
+    type:     annotation    
+
+#task_login:
+#    path:     /secured/login
+#    defaults: { _controller: BROTaskBundle:Secured:task_login }
+#
+#task_login_check:
+#    path:     /secured/login_check
+#    defaults: { _controller: BROTaskBundle:Secured:securityCheck }

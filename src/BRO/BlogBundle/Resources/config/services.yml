@@ -1,0 +1,51 @@
+parameters:
+#    bro_blog.example.class: BRO\BlogBundle\Example
+#security.acl.permission.map.class: Sonata\AdminBundle\Security\Acl\Permission\AdminPermissionMap
+    file_path: /Users/apple/Sites/php_exam/symfo_prj/src/BRO/BlogBundle/XML/file.xml
+
+services:
+#    bro_blog.example:
+#        class: %bro_blog.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
+    bro_blog.twig.extension:
+        class: BRO\BlogBundle\Twig\Extensions\BROBlogExtension
+        tags:
+            - { name: twig.extension }
+
+    bro_blog.admin.blog:
+        class: BRO\BlogBundle\Admin\BlogAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Blog Pages, label: Blogs }
+        arguments: [null, BRO\BlogBundle\Entity\Blog, null]
+        calls:
+            - [ setTemplate, [edit, BROBlogBundle:BlogAdmin:edit.html.twig]]
+ 
+    bro_blog.admin.comment:
+        class: BRO\BlogBundle\Admin\CommentAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Blog Pages, label: Comments }
+        arguments: [null, BRO\BlogBundle\Entity\Comment, BROBlogBundle:CommentAdmin]
+        
+    bro_blog.admin.users:
+        class: BRO\BlogBundle\Admin\UserAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: User Management, label: Users }
+        arguments: [null, BRO\UserBundle\Entity\User, null]  
+        calls:
+            - [setUserManager, ["@fos_user.user_manager"]]
+            
+    bro_blog.admin.group:
+        class: BRO\BlogBundle\Admin\GroupAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: User Management, label: Groups }
+        arguments: [null, BRO\UserBundle\Entity\Group, null]
+
+#    split_file:
+#        class: Bro\BlogBundle\Service\SplitFile
+#        arguments:
+#            - %file_path%
+#            - @old_sound_rabbit_mq.split_file_producer
+#    process_node:
+#            class: BRO\BlogBundle\Consumer\ReadNode
+#            arguments:
+#                - @logger
